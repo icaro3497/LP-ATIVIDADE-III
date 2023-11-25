@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main()
+{
+    setlocale(LC_ALL, "portuguese");
+
+    float nota[3][3];
+    int i, j;
+    char nome[3][200];
+    int idade[3];
+    float media[3];
+    float soma;
+
+    for (i = 0; i < 3; i++)
+    {
+        printf("Cadastre o %d Aluno: ", i + 1);
+        scanf("%s", &nome[i]);
+        fflush(stdin);
+        printf("Idade do Aluno: ");
+        scanf("%d", &idade[i]);
+
+        for (j = 0; j < 3; j++)
+        {
+            printf("Digite a %dª nota: ", j + 1);
+            scanf("%f", &nota[i][j]);
+            soma = soma + nota[i][j];
+                }
+        media[i] = soma / 3;
+        soma = 0;
+    }
+
+    printf("\nExibindo Dados dos Alunos... \n");
+
+    for (i = 0; i < 3; i++)
+    {
+        printf("\n\nAluno: %s ", nome[i]);
+        fflush(stdin);
+        printf("\nIdade: %d", idade[i]);
+
+        for (j = 0; j < 3; j++)
+        {
+            printf("\n%dª notas: %.1f ", j + 1, nota[i][j]);
+        }
+        printf("\nMedia: %.1f ", media[i]);
+
+        if (media[i] >= 7)
+        {
+            printf(": Aprovado!");
+        }
+        else if (media[i] >= 5)
+        {
+            printf(": Recuperação!");
+        }
+        else
+        {
+            printf(": Reprovado!");
+        }
+    }
+    return 0;
+}
